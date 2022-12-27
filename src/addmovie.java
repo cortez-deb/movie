@@ -48,6 +48,8 @@ public class addmovie {
      JLabel updateTime = new JLabel("Time");
      JTextField update_time = new JTextField("");
 
+     JButton updateUpdate = new JButton("Update");
+
 
 
     public void createMovie(){
@@ -165,8 +167,29 @@ public class addmovie {
         delete.setBounds(300,200,100,20);
         Panel.add(delete);
 
+    updatePanel.setBounds(0,250,800,250);
+    updatePanel.setBackground(Color.GRAY);
+    updatePanel.setLayout(null);
+    addMovie.add(updatePanel);
 
+    updateName.setBounds(0,0,70,30);
+    updatePanel.add(updateName);
+        update_name.setBounds(10,30,300,30);
+        updatePanel.add(update_name);
 
+        updatePrice.setBounds(350,0,70,30);
+        updatePanel.add(updatePrice);
+        update_price.setBounds(350,30,100,30);
+        updatePanel.add(update_price);
+
+        updateTime.setBounds(500,0,70,30);
+        updatePanel.add(updateTime);
+        update_time.setBounds(500,30,100,30);
+        updatePanel.add(update_time);
+
+        updateUpdate.setBackground(Color.GRAY);
+        updateUpdate.setBounds(620,25,100,20);
+        updatePanel.add(updateUpdate);
 
 
 
