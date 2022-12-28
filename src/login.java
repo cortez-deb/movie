@@ -1,12 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class login extends JFrame {
     JFrame loginFrame = new JFrame("LOGIN");
     JLabel username = new JLabel("Username");
-    JTextField user = new JTextField("user id");
+    final JTextField user = new JTextField("user id");
     JLabel password = new JLabel("Password");
-    JPasswordField pass = new JPasswordField("**********");
+   final JTextField pass = new JTextField("**********");
     JButton signUp = new JButton("SignUp");
     JButton signIn = new JButton("Login");
     JButton cancel = new JButton("Cancel");
@@ -36,5 +38,57 @@ public class login extends JFrame {
         loginFrame.add(signUp);
         loginFrame.add(signIn);
         loginFrame.add(cancel);
+
+        signIn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String userName =user.getText();
+
+                String passWord=pass.getText();
+                if(userName.isEmpty()||passWord.isEmpty()||user==null||pass==null) {
+                    JOptionPane.showMessageDialog(loginFrame,"Field empty");
+                }
+                else {
+/*
+                    for (int i =0;
+                         i<userName.length();
+                         i++
+                    ){
+                        char ch = userName.charAt(i);
+                        if(!(ch >='a' &&  ch<='z'|| ch >='A'&& ch <='Z')){
+                            flag=false;
+                            System.out.println("1st flag off ");
+                            System.out.println(userName.length());
+                        }}*/
+                        if(userName.matches("^[a-zA-Z0-9]*$")){
+                            if(userName.matches("''/#$%^&*()-+=")) {
+                                JOptionPane.showMessageDialog(loginFrame,"Invalid Username");
+
+                            }
+                            else {
+                                            if(passWord.matches("^[a-zA-Z0-9]*$"))
+                                                    {
+                                                   //database goes
+                                                        databasecontrol databasecontrol =
+                                                                new databasecontrol();
+                                                        int login = databasecontrol.adminlogin(userName,passWord);
+                                                        System.out.println(login);
+                                                    }
+                                            else {
+                                                JOptionPane.showMessageDialog(loginFrame,"Invalid password");
+                                            }
+
+
+                            }
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(loginFrame,"Invalid Username");
+                        }
+
+
+                    }
+                }
+
+        });
     }
 }
