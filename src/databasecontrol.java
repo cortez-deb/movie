@@ -7,10 +7,11 @@ public class databasecontrol {
     String pass="bedrock";
     String db = "movie";
     int port= 3306;
-    public int adminlogin(String user,String pass)
+    public boolean adminlogin(String user, String pass)
     {
             login login=new login();
-        int result =0;
+        String result ="";
+        boolean allow;
 
         try {
 
@@ -20,14 +21,19 @@ public class databasecontrol {
             Statement stmt=con.createStatement();
             ResultSet rs=stmt.executeQuery(" select password from adminlogin where userId='"+user+"';");
             while(rs.next())
-                result =rs.getInt(1);
+                result =rs.getString(1);
             con.close();
         }
         catch (SQLException | ClassNotFoundException throwable) {
             System.out.println(throwable);
-            JOptionPane.showMessageDialog(login.loginFrame,"Failed to login");
         }
-        return result;
+        if(result.isEmpty()){
+            JOptionPane.showMessageDialog(login.loginFrame,"No such user");
+            allow=false;
+        }else {
+            allow=true;
+        }
+        return allow;
     }
 
 }

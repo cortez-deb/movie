@@ -4,16 +4,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class login extends JFrame {
+    Boolean session;
     JFrame loginFrame = new JFrame("LOGIN");
     JLabel username = new JLabel("Username");
     final JTextField user = new JTextField("user id");
     JLabel password = new JLabel("Password");
-   final JTextField pass = new JTextField("**********");
+   final JPasswordField pass = new JPasswordField("**********");
     JButton signUp = new JButton("SignUp");
     JButton signIn = new JButton("Login");
     JButton cancel = new JButton("Cancel");
 
-    public void createLogin(){
+    public Boolean createLogin(){
         loginFrame.setLayout(null);
         loginFrame.setBackground(Color.darkGray);
         loginFrame.setResizable(false);
@@ -43,23 +44,21 @@ public class login extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String userName =user.getText();
+                char [] Passwd = pass.getPassword();
+                String passW="";
+                for (int i= 0;i<Passwd.length;i++){
+                    passW=passW.concat(String.valueOf(Passwd[i]));
+                }
+                String passWord=passW;
 
-                String passWord=pass.getText();
+
+
+
+
                 if(userName.isEmpty()||passWord.isEmpty()||user==null||pass==null) {
                     JOptionPane.showMessageDialog(loginFrame,"Field empty");
                 }
                 else {
-/*
-                    for (int i =0;
-                         i<userName.length();
-                         i++
-                    ){
-                        char ch = userName.charAt(i);
-                        if(!(ch >='a' &&  ch<='z'|| ch >='A'&& ch <='Z')){
-                            flag=false;
-                            System.out.println("1st flag off ");
-                            System.out.println(userName.length());
-                        }}*/
                         if(userName.matches("^[a-zA-Z0-9]*$")){
                             if(userName.matches("''/#$%^&*()-+=")) {
                                 JOptionPane.showMessageDialog(loginFrame,"Invalid Username");
@@ -71,8 +70,13 @@ public class login extends JFrame {
                                                    //database goes
                                                         databasecontrol databasecontrol =
                                                                 new databasecontrol();
-                                                        int login = databasecontrol.adminlogin(userName,passWord);
-                                                        System.out.println(login);
+                                                        session= databasecontrol.adminlogin(userName,passWord);
+                                                    if(session){
+                                                        loginFrame.setVisible(false);
+                                                        addmovie addmovie = new addmovie();
+                                                        addmovie.createMovie();
+                                                    }
+
                                                     }
                                             else {
                                                 JOptionPane.showMessageDialog(loginFrame,"Invalid password");
@@ -89,6 +93,18 @@ public class login extends JFrame {
                     }
                 }
 
+
         });
+
+        signUp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginFrame.setVisible(false);
+                register register =new register();
+                register.createRegister();
+            }
+        });
+    return session;
+
     }
 }

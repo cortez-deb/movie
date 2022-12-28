@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class register {
     JFrame register = new JFrame("REGISTER");
@@ -8,9 +10,9 @@ public class register {
     JLabel email = new JLabel("Email ID");
     JTextField mail = new JTextField("email");
     JLabel password = new JLabel("Password");
-    JPasswordField passwordField = new JPasswordField("***********");
+    JPasswordField passwordField = new JPasswordField("*****************");
     JLabel confirmPass = new JLabel("Confirm");
-    JPasswordField confirmPassword = new JPasswordField("*************");
+    JPasswordField confirmPassword = new JPasswordField("****************");
     JLabel terms = new JLabel("Terms And Conditions");
     JTextArea getTerms = new JTextArea("""
             . Definitions.
@@ -67,6 +69,86 @@ public class register {
         register.add(agreed);
         register.add(cancel);
         register.add(signup);
+
+        signup.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean userName;
+                boolean PassWord;
+                boolean Email;
+                String username = user.getText();
+                String email = mail.getText();
+                char[] pass = passwordField.getPassword();
+                char [] Passwd = confirmPassword.getPassword();
+                String passWord="";
+                String Pass="";
+                for (int i= 0;i<pass.length;i++){
+                    passWord=passWord.concat(String.valueOf(pass[i]));
+                }
+                String password=passWord;
+                for (int J =0;J<Passwd.length;J++){
+                    Pass= Pass.concat(String.valueOf(Passwd[J]));
+                }
+                String Password = Pass;
+                JRadioButton agree = agreed;
+
+                if(username.isEmpty() || email.isEmpty() || password.isEmpty()||Password.isEmpty())
+                {
+                    if(username.isEmpty())
+                    {
+                        JOptionPane.showMessageDialog(register,"username cannot be empty");
+
+                    }else if (email.isEmpty())
+                    {
+                        JOptionPane.showMessageDialog(register,"email cannot be empty");
+
+                    }
+                    else if(Password.isEmpty()){
+                        JOptionPane.showMessageDialog(register,"confirm password cannot be empty");
+
+                    }else {
+                        JOptionPane.showMessageDialog(register,"password cannot be empty");
+
+                    }
+
+                }else {
+                    if(username.matches("^[a-zA-Z0-9]$")){
+                            if(username.matches("''/#$%^&*()-+=")){
+                                JOptionPane.showMessageDialog(register,"Invalid Username1");
+                                userName = false;
+                            }
+                            else {
+                                userName = true;
+                            }
+                    }else
+                            {
+                                JOptionPane.showMessageDialog(register,"invalid username2");
+                                userName = false;
+
+                            }
+
+                    if(email.matches("[a-zA-Z0-9]"))
+                    {
+                        Email = true;
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(register,"Invalid email");
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+                }
+            }
+        });
     }
 
 }
