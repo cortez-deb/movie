@@ -1,5 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLDataException;
+import java.sql.Time;
+import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.jar.JarEntry;
 
 public class addmovie {
@@ -11,10 +17,10 @@ public class addmovie {
     JTextField Name = new JTextField("Title");
 
     JLabel time = new JLabel("Time");
-    JTextField Time = new JTextField("HR:MIN");
+    JTextField Time = new JTextField("00:00");
 
-    JLabel price = new JLabel("price");
-    JTextField Price = new JTextField("Ksh");
+    JLabel price = new JLabel("Price");
+    JTextField Price = new JTextField("00.00");
 
     JButton insert = new JButton("Insert");
 
@@ -191,7 +197,72 @@ public class addmovie {
         updateUpdate.setBounds(620,25,100,20);
         updatePanel.add(updateUpdate);
 
+insert.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String name=Name.getText();
+        String time =Time.getText();
+        String price =Price.getText();
 
+        if (name.isEmpty()||time.isEmpty()||price.isEmpty()){
+            if (name.isEmpty()){
+                JOptionPane.showMessageDialog(addMovie,"Fill Name");
+            }
+            if (time.isEmpty()){
+                JOptionPane.showMessageDialog(addMovie,"Fill Time");
+
+            }
+            if (price.isEmpty()){
+                JOptionPane.showMessageDialog(addMovie,"Fill Price");
+
+            }
+            }
+        else if (name.contains("Title")) {
+            JOptionPane.showMessageDialog(addMovie,"Fill in Title");
+
+             }
+        else if (time.contains("00:00")) {
+            JOptionPane.showMessageDialog(addMovie,"Fill in Time");
+
+             }
+        else if (price.contains("00.00")) {
+                JOptionPane.showMessageDialog(addMovie,"Fill Price");
+
+            }
+        else {
+            boolean pr = false;
+            boolean tr= false;
+            float newPrice = 0;
+            try {
+                newPrice = Float.parseFloat(price);
+                if(newPrice == Integer.parseInt(price)){
+                    pr=true;
+                }
+            } catch (NumberFormatException exception) {
+                JOptionPane.showMessageDialog(addMovie, "Invalid price");
+            }
+
+/*            try {
+                java.sql.Time T = java.sql.Time.valueOf(time);
+                if (Time.isValid()){
+                    tr= true;
+                }
+            }catch (InputMismatchException ex){
+                System.out.println(ex);
+            }*/
+
+            if(pr){
+                databasecontrol databasecontrol = new databasecontrol();
+                if (databasecontrol.insert(name, time, newPrice)) {
+                    JOptionPane.showMessageDialog(addMovie, "Added");
+                } else {
+                    JOptionPane.showMessageDialog(addMovie, "Movie Name already exists  ");
+
+                }
+            }
+        }
+    }
+});
 
 }
 
