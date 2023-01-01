@@ -75,6 +75,7 @@ public class login extends JFrame {
                                                         loginFrame.setVisible(false);
                                                         addmovie addmovie = new addmovie();
                                                         addmovie.createMovie();
+                                                        addmovie.displayNames();
                                                     }
 
                                                     }

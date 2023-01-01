@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLDataException;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.jar.JarEntry;
@@ -197,6 +198,7 @@ public class addmovie {
         updateUpdate.setBounds(620,25,100,20);
         updatePanel.add(updateUpdate);
 
+        databasecontrol databasecontrol = new databasecontrol();
 insert.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -242,17 +244,10 @@ insert.addActionListener(new ActionListener() {
                 JOptionPane.showMessageDialog(addMovie, "Invalid price");
             }
 
-/*            try {
-                java.sql.Time T = java.sql.Time.valueOf(time);
-                if (Time.isValid()){
-                    tr= true;
-                }
-            }catch (InputMismatchException ex){
-                System.out.println(ex);
-            }*/
+
 
             if(pr){
-                databasecontrol databasecontrol = new databasecontrol();
+
                 if (databasecontrol.insert(name, time, newPrice)) {
                     JOptionPane.showMessageDialog(addMovie, "Added");
                 } else {
@@ -265,6 +260,19 @@ insert.addActionListener(new ActionListener() {
 });
 
 }
-
+public void displayNames(){
+      databasecontrol databasecontrol = new databasecontrol();
+      int length = databasecontrol.nameCount();
+      String [] move = new String[length];
+      for (int i =0;i<length;i++){
+          move[i]=databasecontrol.names().get(i);
+      }
+      dbName1.setText(move[0]);
+      dbName2.setText(move[1]);
+      dbName3.setText(move[2]);
+      dbName4.setText(move[3]);
+      dbName5.setText(move[4]);
+      dbName6.setText(move[5]);
+}
 
 }
