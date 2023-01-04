@@ -96,6 +96,85 @@ public class databasecontrol {
         }
 
         return names;
+    }public String name()
+    {
+        addmovie addmovie = new addmovie();
+        String names ="";
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/movie","deh","bedrock");
+            Statement stmt=con.createStatement();
+            ResultSet rs=stmt.executeQuery(" select name from movie;");
+            while(rs.next()){
+
+              name name =  new name(rs.getString("name"));
+                names.concat(name.getname());
+            }
+
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException throwable) {
+            System.out.println(throwable);
+            JOptionPane.showMessageDialog(addmovie.addMovie,"Error occurred");
+        }
+
+        return names;
+    }
+
+    public String price(String name)
+    {
+        addmovie addmovie = new addmovie();
+        String price ="";
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/movie","deh","bedrock");
+            Statement stmt=con.createStatement();
+            ResultSet rs=stmt.executeQuery(" select price from movie  where name='"+name+"' ;");
+            while(rs.next()){
+
+              name nam =  new name(rs.getString("name"));
+                price.concat(nam.getname());
+            }
+
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException throwable) {
+            System.out.println(throwable);
+            JOptionPane.showMessageDialog(addmovie.addMovie,"Price Error occurred");
+        }
+
+        return price;
+    }
+    public String time(String name)
+    {
+        addmovie addmovie = new addmovie();
+        String time = "";
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/movie","deh","bedrock");
+            Statement stmt=con.createStatement();
+            ResultSet rs=stmt.executeQuery(" select time from movie where name ='"+name+"';");
+            while(rs.next()){
+
+              name nam =  new name(rs.getString("name"));
+                //time.add(nam.getname());
+                time.concat(nam.getname());
+            }
+
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException throwable) {
+            System.out.println(throwable);
+            JOptionPane.showMessageDialog(addmovie.addMovie,"time error occurred");
+        }
+
+        return time;
     }
 
     public int nameCount()
@@ -118,6 +197,37 @@ public class databasecontrol {
             throwables.printStackTrace();
         }
         return result;
+    }
+
+
+    public boolean update(String name,String newName, String time,float price)
+    {
+        addmovie addmovie = new addmovie();
+        boolean  sent = false;
+
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/movie","deh","bedrock");
+            Statement stmt=con.createStatement();
+            stmt.execute("delete from movie where name='"+name+"';");
+            sent= stmt.execute("insert into movie (\n" +
+                        "    name,\n" +
+                        "    price,\n" +
+                        "    `time`)\n" +
+                        "values (\n" +
+                        "    '"+newName+"',\n" +
+                        "    '"+time+"',\n" +
+                        "    '"+price+"')\n" +
+                        ";");
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException throwable) {
+            System.out.println(throwable);
+            JOptionPane.showMessageDialog(addmovie.addMovie,"Failed");
+        }
+        return sent;
     }
 
 

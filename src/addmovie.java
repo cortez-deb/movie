@@ -2,12 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLDataException;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.InputMismatchException;
-import java.util.jar.JarEntry;
+
 
 public class addmovie {
     JFrame addMovie = new JFrame("Add Movie");
@@ -177,28 +172,53 @@ public class addmovie {
     updatePanel.setBounds(0,250,800,250);
     updatePanel.setBackground(Color.GRAY);
     updatePanel.setLayout(null);
+    updatePanel.setVisible(true);
     addMovie.add(updatePanel);
 
     updateName.setBounds(0,0,70,30);
     updatePanel.add(updateName);
         update_name.setBounds(10,30,300,30);
         updatePanel.add(update_name);
-
+        update_name.setVisible(false);
         updatePrice.setBounds(350,0,70,30);
         updatePanel.add(updatePrice);
         update_price.setBounds(350,30,100,30);
+        update_price.setVisible(false);
         updatePanel.add(update_price);
 
         updateTime.setBounds(500,0,70,30);
         updatePanel.add(updateTime);
         update_time.setBounds(500,30,100,30);
         updatePanel.add(update_time);
+        update_time.setVisible(false);
 
         updateUpdate.setBackground(Color.GRAY);
         updateUpdate.setBounds(620,25,100,20);
         updatePanel.add(updateUpdate);
+        updateUpdate.setVisible(false);
+delete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        databasecontrol databasecontrol = new databasecontrol();
+            }
+        });
+update1.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        update_time.setVisible(true);
+        update_name.setVisible(true);
+        update_price.setVisible(true);
+        updateUpdate.setVisible(true);
+
+        String[] data;
+        data= selectedCheckbox();
+        update_name.setText(data[0]);
+        update_price.setText(data[1]);
+        update_time.setText(data[2]);
+
+    }
+});
+databasecontrol databasecontrol = new databasecontrol();
 insert.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -233,7 +253,6 @@ insert.addActionListener(new ActionListener() {
             }
         else {
             boolean pr = false;
-            boolean tr= false;
             float newPrice = 0;
             try {
                 newPrice = Float.parseFloat(price);
@@ -258,7 +277,12 @@ insert.addActionListener(new ActionListener() {
         }
     }
 });
-
+updateUpdate.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        handleCheckbox();
+    }
+});
 }
 public void displayNames(){
       databasecontrol databasecontrol = new databasecontrol();
@@ -274,5 +298,156 @@ public void displayNames(){
       dbName5.setText(move[4]);
       dbName6.setText(move[5]);
 }
+public  void handleCheckbox(){
+    String name;
+    boolean done;
+    String newName;
+
+        if(ch1.isSelected()){
+            newName= dbName1.getText();
+            name= update_name.getText();
+            String price = update_price.getText();
+            String time = update_time.getText();
+            updater(newName,name,price,time);
+        }
+        else if(ch2.isSelected()){
+            newName= dbName2.getText();
+            name= update_name.getText();
+            String price = update_price.getText();
+            String time = update_time.getText();
+            updater(newName,name,price,time);
+
+        }
+        else if(ch3.isSelected()){
+            newName= dbName3.getText();
+            name= update_name.getText();
+            String price = update_price.getText();
+            String time = update_time.getText();
+            updater(newName,name,price,time);
+        }
+        else if(ch4.isSelected()){
+            newName= dbName4.getText();
+            name= update_name.getText();
+            String price = update_price.getText();
+            String time = update_time.getText();
+            updater(newName,name,price,time);
+        }
+        else if(ch5.isSelected()){
+            newName= dbName5.getText();
+            name= update_name.getText();
+            String price = update_price.getText();
+            String time = update_time.getText();
+            updater(newName,name,price,time);
+        }
+        else if(ch6.isSelected()){
+            newName= dbName6.getText();
+            name= update_name.getText();
+            String price = update_price.getText();
+            String time = update_time.getText();
+            updater(newName,name,price,time);
+        }
+        else {
+            JOptionPane.showMessageDialog(addMovie,"No Items Selected");
+        }
+}
+public String[] selectedCheckbox(){
+    String[] out = new String[3];
+    String newName;
+    if(ch1.isSelected()){
+        newName= dbName1.getText();
+       out=Edit(newName);
+
+    }
+    else if(ch2.isSelected()){
+        newName= dbName2.getText();
+        out=Edit(newName);
+
+    }
+    else if(ch3.isSelected()){
+        newName= dbName3.getText();
+        out=Edit(newName);
+
+    }
+    else if(ch4.isSelected()){
+        newName= dbName4.getText();
+        out=Edit(newName);
+
+    }
+    else if(ch5.isSelected()){
+        newName= dbName5.getText();
+        out=Edit(newName);
+;
+    }
+    else if(ch6.isSelected()){
+        newName= dbName6.getText();
+        out=Edit(newName);
+
+    }
+    return out;
+}
+public void updater(String newName,String name,String price,String time){
+    databasecontrol databasecontrol = new databasecontrol();
+    if (name.isEmpty()||time.isEmpty()||price.isEmpty()){
+        if (name.isEmpty()){
+            JOptionPane.showMessageDialog(addMovie,"Fill Name");
+        }
+        if (time.isEmpty()){
+            JOptionPane.showMessageDialog(addMovie,"Fill Time");
+
+        }
+        if (price.isEmpty()){
+            JOptionPane.showMessageDialog(addMovie,"Fill Price");
+
+        }
+    }
+    else {
+        boolean pr = false;
+        float newPrice = 0;
+        try {
+            newPrice = Float.parseFloat(price);
+            if(newPrice == Integer.parseInt(price)){
+                pr=true;
+            }
+        } catch (NumberFormatException exception) {
+            JOptionPane.showMessageDialog(addMovie, "Invalid price");
+        }
+
+
+
+        if(pr){
+
+            if (databasecontrol.update(newName,name, time, newPrice)) {
+                JOptionPane.showMessageDialog(addMovie, "Added");
+            } else {
+                JOptionPane.showMessageDialog(addMovie, "Movie Name already exists  ");
+
+            }
+        }
+    }
+}
+public String[] Edit(String name){
+
+
+        databasecontrol databasecontrol = new databasecontrol();
+        int length = 1;
+        String [] move = new String[length];
+        String [] price = new String[length];
+        String [] time = new String[length];
+        time[0]=databasecontrol.time(name);
+
+            move[0]=databasecontrol.name();
+            price[0]=databasecontrol.price(name);
+
+        String [] r = new String[3];
+        r[0]=time[0];
+        r[1]=move[0];
+        r[2]=price[0];
+
+        return r;
+
+    }
+
+
+
 
 }
