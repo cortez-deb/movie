@@ -35,7 +35,7 @@ public class addmovie {
     JCheckBox ch6 =new JCheckBox();
     JButton delete = new JButton("Delete");
     JButton update1 = new JButton("Edit");
-    JButton update2 = new JButton("Edit");
+    JButton update2 = new JButton("Refresh");
     JButton update3 = new JButton("Edit");
     JButton update4 = new JButton("Edit");
     JButton update5 = new JButton("Edit");
@@ -55,7 +55,8 @@ public class addmovie {
     databasecontrol databasecontrol = new databasecontrol();
 
 
-    public void createMovie(){
+    public void createMovie()
+    {
     addMovie.setBounds(200,200,800,500);
 
     addMovie.setBackground(Color.GRAY);
@@ -198,10 +199,13 @@ public class addmovie {
         updatePanel.add(updateUpdate);
         updateUpdate.setVisible(false);
 
-        ch1.addActionListener(new ActionListener() {
+        ch1.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if(ch1.isSelected()){
+            public void actionPerformed(ActionEvent e)
+            {
+                if(ch1.isSelected())
+                {
                     boolean enabled = false;
                     boolean b = enabled;
                     ch2.setEnabled(b);
@@ -211,7 +215,8 @@ public class addmovie {
                     ch6.setEnabled(b);
 
                 }
-                else {
+                else
+                {
 
                     boolean b = true;
                     ch2.setEnabled(b);
@@ -227,17 +232,22 @@ public class addmovie {
                 }
             }
         });
-        ch2.addActionListener(new ActionListener() {
+        ch2.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if(ch2.isSelected()){
+            public void actionPerformed(ActionEvent e)
+            {
+                if(ch2.isSelected())
+                {
                     boolean b = false;
                     ch1.setEnabled(b);
                     ch3.setEnabled(b);
                     ch4.setEnabled(b);
                     ch5.setEnabled(b);
                     ch6.setEnabled(b);
-                }else {
+                }
+                else
+                {
                     boolean b = true;
                     ch1.setEnabled(b);
                     ch3.setEnabled(b);
@@ -252,17 +262,22 @@ public class addmovie {
                 }
             }
         });
-        ch3.addActionListener(new ActionListener() {
+        ch3.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if(ch3.isSelected()){
+            public void actionPerformed(ActionEvent e)
+            {
+                if(ch3.isSelected())
+                {
                     boolean b = false;
                     ch1.setEnabled(b);
                     ch2.setEnabled(b);
                     ch4.setEnabled(b);
                     ch5.setEnabled(b);
                     ch6.setEnabled(b);
-                }else {
+                }
+                else
+                {
                     boolean b = true;
                     ch1.setEnabled(b);
                     ch2.setEnabled(b);
@@ -277,17 +292,22 @@ public class addmovie {
                 }
             }
         });
-        ch4.addActionListener(new ActionListener() {
+        ch4.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if(ch4.isSelected()){
+            public void actionPerformed(ActionEvent e)
+            {
+                if(ch4.isSelected())
+                {
                     boolean b = false;
                     ch1.setEnabled(b);
                     ch2.setEnabled(b);
                     ch3.setEnabled(b);
                     ch5.setEnabled(b);
                     ch6.setEnabled(b);
-                }else {
+                }
+                else
+                {
                     boolean b = true;
                     ch1.setEnabled(b);
                     ch2.setEnabled(b);
@@ -302,17 +322,22 @@ public class addmovie {
                 }
             }
         });
-        ch5.addActionListener(new ActionListener() {
+        ch5.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if(ch5.isSelected()){
+            public void actionPerformed(ActionEvent e)
+            {
+                if(ch5.isSelected())
+                {
                     boolean b = false;
                     ch1.setEnabled(b);
                     ch2.setEnabled(b);
                     ch3.setEnabled(b);
                     ch4.setEnabled(b);
                     ch6.setEnabled(b);
-                }else {
+                }
+                else
+                {
                     boolean b = true;
                     ch1.setEnabled(b);
                     ch2.setEnabled(b);
@@ -327,17 +352,22 @@ public class addmovie {
                 }
             }
         });
-        ch6.addActionListener(new ActionListener() {
+        ch6.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                if(ch6.isSelected()){
+            public void actionPerformed(ActionEvent e)
+            {
+                if(ch6.isSelected())
+                {
                     boolean b = false;
                     ch1.setEnabled(b);
                     ch2.setEnabled(b);
                     ch3.setEnabled(b);
                     ch5.setEnabled(b);
                     ch4.setEnabled(b);
-                }else {
+                }
+                else
+                {
                     boolean b = true;
                     ch1.setEnabled(b);
                     ch2.setEnabled(b);
@@ -352,22 +382,28 @@ public class addmovie {
                 }
             }
         });
-delete.addActionListener(new ActionListener() {
+delete.addActionListener(new ActionListener()
+{
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 boolean deleted;
                 deleted=databasecontrol.delete(deleteCheckbox());
 
-                if (!deleted) {
+                if (!deleted)
+                {
                     JOptionPane.showMessageDialog(addMovie, "Failed");
-                }else {
+                }else
+                {
                     displayNames();
                 }
             }
         });
-update1.addActionListener(new ActionListener() {
+update1.addActionListener(new ActionListener()
+{
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
         update_time.setVisible(true);
         update_name.setVisible(true);
         update_price.setVisible(true);
@@ -381,114 +417,152 @@ update1.addActionListener(new ActionListener() {
 
     }
 });
-insert.addActionListener(new ActionListener() {
+update2.addActionListener(new ActionListener()
+{
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
+        displayNames();
+    }
+});
+insert.addActionListener(new ActionListener()
+{
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
         String name=Name.getText();
         String time =Time.getText();
         String price =Price.getText();
 
-        if (name.isEmpty()||time.isEmpty()||price.isEmpty()){
-            if (name.isEmpty()){
+        if (name.isEmpty()||time.isEmpty()||price.isEmpty())
+        {
+            if (name.isEmpty())
+            {
                 JOptionPane.showMessageDialog(addMovie,"Fill Name");
             }
-            if (time.isEmpty()){
+            if (time.isEmpty())
+            {
                 JOptionPane.showMessageDialog(addMovie,"Fill Time");
 
             }
-            if (price.isEmpty()){
+            if (price.isEmpty())
+            {
                 JOptionPane.showMessageDialog(addMovie,"Fill Price");
 
             }
             }
-        else if (name.contains("Title")) {
+        else if (name.contains("Title"))
+        {
             JOptionPane.showMessageDialog(addMovie,"Fill in Title");
 
-             }
-        else if (time.contains("00:00")) {
+        }
+        else if (time.contains("00:00"))
+        {
             JOptionPane.showMessageDialog(addMovie,"Fill in Time");
 
-             }
-        else if (price.contains("00.00")) {
+        }
+        else if (price.contains("00.00"))
+        {
                 JOptionPane.showMessageDialog(addMovie,"Fill Price");
 
-            }
-        else {
+        }
+        else
+        {
             boolean pr = false;
             float newPrice = 0;
-            try {
+            try
+            {
                 newPrice = Float.parseFloat(price);
-                if(newPrice == Integer.parseInt(price)){
+                if(newPrice == Integer.parseInt(price))
+                {
                     pr=true;
                 }
-            } catch (NumberFormatException exception) {
+            }
+            catch (NumberFormatException exception)
+            {
                 JOptionPane.showMessageDialog(addMovie, "Invalid price");
             }
 
 
 
-            if(pr){
+            if(pr)
+            {
                 int length=databasecontrol.nameCount();
-                if(length<=6){
+                if(length<7)
+                {
 
-                if (databasecontrol.insert(name, time, newPrice)) {
-                    displayNames();
+                        if (databasecontrol.insert(name, time, newPrice))
+                        {
+                            displayNames();
 
-                } else {
-                    displayNames();
-                    JOptionPane.showMessageDialog(addMovie, "Movie Name already exists  ");
+                        }
+                        else
+                        {
+                            displayNames();
+                            JOptionPane.showMessageDialog(addMovie, "Movie Name already exists  ");
 
+                        }
                 }
-                }else {
+                else
+                {
                     JOptionPane.showMessageDialog(addMovie,"Reached Max Entries");
                 }
             }
         }
     }
 });
-updateUpdate.addActionListener(new ActionListener() {
+updateUpdate.addActionListener(new ActionListener()
+{
     @Override
     public void actionPerformed(ActionEvent e) {
         handleCheckbox();
     }
 });
 }
-public void displayNames(){
+public void displayNames()
+{
       databasecontrol databasecontrol = new databasecontrol();
       int length = databasecontrol.nameCount();
       String [] move = new String[length];
-      for (int i =0;i<length;i++){
+      for (int i =0;i<length;i++)
+      {
           move[i]=databasecontrol.names().get(i);
       }
 
-      if(length==1){
+      if(length==1)
+      {
           dbName1.setText(move[0]);
 
       }
-      else if(length==2){
+      else if(length==2)
+      {
           dbName1.setText(move[0]);
           dbName2.setText(move[1]);
       }
-      else if(length==3){
+      else if(length==3)
+      {
           dbName1.setText(move[0]);
           dbName2.setText(move[1]);
           dbName3.setText(move[2]);
       }
-      else if(length==4){
+      else if(length==4)
+      {
           dbName1.setText(move[0]);
           dbName2.setText(move[1]);
           dbName3.setText(move[2]);
           dbName4.setText(move[3]);
 
       }
-      else if(length==5){
+      else if(length==5)
+      {
           dbName1.setText(move[0]);
           dbName2.setText(move[1]);
           dbName3.setText(move[2]);
           dbName4.setText(move[3]);
           dbName5.setText(move[4]);
       }
-      else if(length==6){
+      else if(length>=6)
+      {
           dbName1.setText(move[0]);
           dbName2.setText(move[1]);
           dbName3.setText(move[2]);
@@ -496,22 +570,24 @@ public void displayNames(){
           dbName5.setText(move[4]);
           dbName6.setText(move[4]);
       }
-      else {
+/*      else {
         JOptionPane.showMessageDialog(addMovie,"Maximum");
-      }
+      }*/
 }
 public  void handleCheckbox(){
     String name;
     String newName;
 
-        if(ch1.isSelected()){
+        if(ch1.isSelected())
+        {
             newName= dbName1.getText();
             name= update_name.getText();
             String price = update_price.getText();
             String time = update_time.getText();
             updater(newName,name,price,time);
         }
-        else if(ch2.isSelected()){
+        else if(ch2.isSelected())
+        {
             newName= dbName2.getText();
             name= update_name.getText();
             String price = update_price.getText();
@@ -519,141 +595,176 @@ public  void handleCheckbox(){
             updater(newName,name,price,time);
 
         }
-        else if(ch3.isSelected()){
+        else if(ch3.isSelected())
+        {
             newName= dbName3.getText();
             name= update_name.getText();
             String price = update_price.getText();
             String time = update_time.getText();
             updater(newName,name,price,time);
         }
-        else if(ch4.isSelected()){
+        else if(ch4.isSelected())
+        {
             newName= dbName4.getText();
             name= update_name.getText();
             String price = update_price.getText();
             String time = update_time.getText();
             updater(newName,name,price,time);
         }
-        else if(ch5.isSelected()){
+        else if(ch5.isSelected())
+        {
             newName= dbName5.getText();
             name= update_name.getText();
             String price = update_price.getText();
             String time = update_time.getText();
             updater(newName,name,price,time);
         }
-        else if(ch6.isSelected()){
+        else if(ch6.isSelected())
+        {
             newName= dbName6.getText();
             name= update_name.getText();
             String price = update_price.getText();
             String time = update_time.getText();
             updater(newName,name,price,time);
         }
-        else {
+        else
+        {
             JOptionPane.showMessageDialog(addMovie,"No Items Selected");
         }
 }
-public String deleteCheckbox(){
+public String deleteCheckbox()
+{
     String newName = "";
 
-        if(ch1.isSelected()){
+        if(ch1.isSelected())
+        {
             return dbName1.getText();
         }
-        else if(ch2.isSelected()){
+        else if(ch2.isSelected())
+        {
             return dbName2.getText();
         }
-        else if(ch3.isSelected()){
+        else if(ch3.isSelected())
+        {
             return dbName3.getText();
         }
-        else if(ch4.isSelected()){
+        else if(ch4.isSelected())
+        {
             return dbName4.getText();
         }
-        else if(ch5.isSelected()){
+        else if(ch5.isSelected())
+        {
             return dbName5.getText();
         }
-        else if(ch6.isSelected()){
+        else if(ch6.isSelected())
+        {
             return dbName6.getText();
         }
-        else {
+        else
+        {
             JOptionPane.showMessageDialog(addMovie,"No Items Selected");
         }
 
 
     return newName;
 }
-public String[] selectedCheckbox(){
+public String[] selectedCheckbox()
+{
     String[] out = new String[3];
     String newName;
-    if(ch1.isSelected()){
+    if(ch1.isSelected())
+    {
         newName= dbName1.getText();
        out=Edit(newName);
 
     }
-    else if(ch2.isSelected()){
+    else if(ch2.isSelected())
+    {
         newName= dbName2.getText();
         out=Edit(newName);
 
     }
-    else if(ch3.isSelected()){
+    else if(ch3.isSelected())
+    {
         newName= dbName3.getText();
         out=Edit(newName);
     }
-    else if(ch4.isSelected()){
+    else if(ch4.isSelected())
+    {
         newName= dbName4.getText();
         out=Edit(newName);
 
     }
-    else if(ch5.isSelected()){
+    else if(ch5.isSelected())
+    {
         newName= dbName5.getText();
         out=Edit(newName);
-;
+
     }
-    else if(ch6.isSelected()){
+    else if(ch6.isSelected())
+    {
         newName= dbName6.getText();
         out=Edit(newName);
 
     }
     return out;
 }
-public void updater(String newName,String name,String price,String time){
+public void updater(String newName,String name,String price,String time)
+{
     databasecontrol databasecontrol = new databasecontrol();
-    if (name.isEmpty()||time.isEmpty()||price.isEmpty()){
-        if (name.isEmpty()){
+    if (name.isEmpty()||time.isEmpty()||price.isEmpty())
+    {
+        if (name.isEmpty())
+        {
             JOptionPane.showMessageDialog(addMovie,"Fill Name");
         }
-        if (time.isEmpty()){
+        if (time.isEmpty())
+        {
             JOptionPane.showMessageDialog(addMovie,"Fill Time");
 
         }
-        if (price.isEmpty()){
+        if (price.isEmpty())
+        {
             JOptionPane.showMessageDialog(addMovie,"Fill Price");
 
         }
     }
-    else {
+    else
+    {
         boolean pr = false;
         float newPrice = 0;
-        try {
+        try
+        {
             newPrice = Float.parseFloat(price);
-            if(newPrice == Integer.parseInt(price)){
+            if(newPrice == Integer.parseInt(price))
+            {
                 pr=true;
             }
-        } catch (NumberFormatException exception) {
+        }
+        catch (NumberFormatException exception)
+        {
             JOptionPane.showMessageDialog(addMovie, "Invalid price");
         }
 
 
 
-        if(pr){
+        if(pr)
+        {
 
-            if (databasecontrol.update(newName,name, time, newPrice)) {
+            if (databasecontrol.update(newName,name, time, newPrice))
+            {
                 JOptionPane.showMessageDialog(addMovie, "Added");
-            } else {
+            }
+            else
+            {
                 JOptionPane.showMessageDialog(addMovie, "Movie Name already exists  ");
 
             }
         }
     }
 }
-public String[] Edit(String name){
+public String[] Edit(String name)
+{
 
 
         databasecontrol databasecontrol = new databasecontrol();
@@ -671,6 +782,5 @@ public String[] Edit(String name){
         r[2]=time[0];
         return r;
 
-    }
-
+}
 }

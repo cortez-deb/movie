@@ -96,7 +96,9 @@ public class databasecontrol {
         }
 
         return names;
-    }public String name()
+    }
+
+    public String name()
     {
         addmovie addmovie = new addmovie();
         String names ="";
@@ -138,7 +140,6 @@ public class databasecontrol {
 
               name nam =  new name(rs.getString("price"));
                 price=nam.getname();
-                System.out.println(price);
 
             }
 
@@ -165,8 +166,7 @@ public class databasecontrol {
             while(rs.next()){
 
               name nam =  new name(rs.getString("time"));
-                //time.add(nam.getname());
-                time=nam.getname();
+              time=nam.getname();
             }
 
             con.close();
@@ -213,8 +213,8 @@ public class databasecontrol {
             con.close();
             done=true;
         }
-        catch (SQLException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
+        catch (SQLException | ClassNotFoundException throwable) {
+            throwable.printStackTrace();
             done=false;
         }
 
