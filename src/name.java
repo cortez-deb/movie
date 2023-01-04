@@ -2,8 +2,7 @@ public class name {
     String name;
 
 
-    public name(String name
-                )
+    public name(String name)
     {
         this.name = name;
     }

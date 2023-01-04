@@ -110,7 +110,7 @@ public class databasecontrol {
             while(rs.next()){
 
               name name =  new name(rs.getString("name"));
-                names.concat(name.getname());
+                names=name.getname();
             }
 
             con.close();
@@ -133,11 +133,13 @@ public class databasecontrol {
             Connection con= DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/movie","deh","bedrock");
             Statement stmt=con.createStatement();
-            ResultSet rs=stmt.executeQuery(" select price from movie  where name='"+name+"' ;");
+            ResultSet rs=stmt.executeQuery("select price from movie  where name='"+name+"' ;");
             while(rs.next()){
 
-              name nam =  new name(rs.getString("name"));
-                price.concat(nam.getname());
+              name nam =  new name(rs.getString("price"));
+                price=nam.getname();
+                System.out.println(price);
+
             }
 
             con.close();
@@ -162,9 +164,9 @@ public class databasecontrol {
             ResultSet rs=stmt.executeQuery(" select time from movie where name ='"+name+"';");
             while(rs.next()){
 
-              name nam =  new name(rs.getString("name"));
+              name nam =  new name(rs.getString("time"));
                 //time.add(nam.getname());
-                time.concat(nam.getname());
+                time=nam.getname();
             }
 
             con.close();
@@ -197,6 +199,26 @@ public class databasecontrol {
             throwables.printStackTrace();
         }
         return result;
+    }
+    public boolean delete(String name)
+    {
+        boolean done;
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/movie","deh","bedrock");
+            Statement stmt=con.createStatement();
+            stmt.execute("delete from movie where name='"+name+"';");
+            con.close();
+            done=true;
+        }
+        catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+            done=false;
+        }
+
+        return done;
     }
 
 

@@ -52,6 +52,7 @@ public class addmovie {
 
      JButton updateUpdate = new JButton("Update");
 
+    databasecontrol databasecontrol = new databasecontrol();
 
 
     public void createMovie(){
@@ -196,10 +197,172 @@ public class addmovie {
         updateUpdate.setBounds(620,25,100,20);
         updatePanel.add(updateUpdate);
         updateUpdate.setVisible(false);
+
+        ch1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(ch1.isSelected()){
+                    boolean enabled = false;
+                    boolean b = enabled;
+                    ch2.setEnabled(b);
+                    ch3.setEnabled(b);
+                    ch4.setEnabled(b);
+                    ch5.setEnabled(b);
+                    ch6.setEnabled(b);
+
+                }
+                else {
+
+                    boolean b = true;
+                    ch2.setEnabled(b);
+                    ch3.setEnabled(b);
+                    ch4.setEnabled(b);
+                    ch5.setEnabled(b);
+                    ch6.setEnabled(b);
+
+                    String text="";
+                    update_name.setText(text);
+                    update_price.setText(text);
+                    update_time.setText(text);
+                }
+            }
+        });
+        ch2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(ch2.isSelected()){
+                    boolean b = false;
+                    ch1.setEnabled(b);
+                    ch3.setEnabled(b);
+                    ch4.setEnabled(b);
+                    ch5.setEnabled(b);
+                    ch6.setEnabled(b);
+                }else {
+                    boolean b = true;
+                    ch1.setEnabled(b);
+                    ch3.setEnabled(b);
+                    ch4.setEnabled(b);
+                    ch5.setEnabled(b);
+                    ch6.setEnabled(b);
+
+                    String text="";
+                    update_name.setText(text);
+                    update_price.setText(text);
+                    update_time.setText(text);
+                }
+            }
+        });
+        ch3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(ch3.isSelected()){
+                    boolean b = false;
+                    ch1.setEnabled(b);
+                    ch2.setEnabled(b);
+                    ch4.setEnabled(b);
+                    ch5.setEnabled(b);
+                    ch6.setEnabled(b);
+                }else {
+                    boolean b = true;
+                    ch1.setEnabled(b);
+                    ch2.setEnabled(b);
+                    ch4.setEnabled(b);
+                    ch5.setEnabled(b);
+                    ch6.setEnabled(b);
+
+                    String text="";
+                    update_name.setText(text);
+                    update_price.setText(text);
+                    update_time.setText(text);
+                }
+            }
+        });
+        ch4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(ch4.isSelected()){
+                    boolean b = false;
+                    ch1.setEnabled(b);
+                    ch2.setEnabled(b);
+                    ch3.setEnabled(b);
+                    ch5.setEnabled(b);
+                    ch6.setEnabled(b);
+                }else {
+                    boolean b = true;
+                    ch1.setEnabled(b);
+                    ch2.setEnabled(b);
+                    ch3.setEnabled(b);
+                    ch5.setEnabled(b);
+                    ch6.setEnabled(b);
+
+                    String text="";
+                    update_name.setText(text);
+                    update_price.setText(text);
+                    update_time.setText(text);
+                }
+            }
+        });
+        ch5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(ch5.isSelected()){
+                    boolean b = false;
+                    ch1.setEnabled(b);
+                    ch2.setEnabled(b);
+                    ch3.setEnabled(b);
+                    ch4.setEnabled(b);
+                    ch6.setEnabled(b);
+                }else {
+                    boolean b = true;
+                    ch1.setEnabled(b);
+                    ch2.setEnabled(b);
+                    ch3.setEnabled(b);
+                    ch4.setEnabled(b);
+                    ch6.setEnabled(b);
+
+                    String text="";
+                    update_name.setText(text);
+                    update_price.setText(text);
+                    update_time.setText(text);
+                }
+            }
+        });
+        ch6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(ch6.isSelected()){
+                    boolean b = false;
+                    ch1.setEnabled(b);
+                    ch2.setEnabled(b);
+                    ch3.setEnabled(b);
+                    ch5.setEnabled(b);
+                    ch4.setEnabled(b);
+                }else {
+                    boolean b = true;
+                    ch1.setEnabled(b);
+                    ch2.setEnabled(b);
+                    ch3.setEnabled(b);
+                    ch5.setEnabled(b);
+                    ch4.setEnabled(b);
+
+                    String text="";
+                    update_name.setText(text);
+                    update_price.setText(text);
+                    update_time.setText(text);
+                }
+            }
+        });
 delete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boolean deleted;
+                deleted=databasecontrol.delete(deleteCheckbox());
 
+                if (!deleted) {
+                    JOptionPane.showMessageDialog(addMovie, "Failed");
+                }else {
+                    displayNames();
+                }
             }
         });
 update1.addActionListener(new ActionListener() {
@@ -218,7 +381,6 @@ update1.addActionListener(new ActionListener() {
 
     }
 });
-databasecontrol databasecontrol = new databasecontrol();
 insert.addActionListener(new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -266,12 +428,19 @@ insert.addActionListener(new ActionListener() {
 
 
             if(pr){
+                int length=databasecontrol.nameCount();
+                if(length<=6){
 
                 if (databasecontrol.insert(name, time, newPrice)) {
-                    JOptionPane.showMessageDialog(addMovie, "Added");
+                    displayNames();
+
                 } else {
+                    displayNames();
                     JOptionPane.showMessageDialog(addMovie, "Movie Name already exists  ");
 
+                }
+                }else {
+                    JOptionPane.showMessageDialog(addMovie,"Reached Max Entries");
                 }
             }
         }
@@ -291,16 +460,48 @@ public void displayNames(){
       for (int i =0;i<length;i++){
           move[i]=databasecontrol.names().get(i);
       }
-      dbName1.setText(move[0]);
-      dbName2.setText(move[1]);
-      dbName3.setText(move[2]);
-      dbName4.setText(move[3]);
-      dbName5.setText(move[4]);
-      dbName6.setText(move[5]);
+
+      if(length==1){
+          dbName1.setText(move[0]);
+
+      }
+      else if(length==2){
+          dbName1.setText(move[0]);
+          dbName2.setText(move[1]);
+      }
+      else if(length==3){
+          dbName1.setText(move[0]);
+          dbName2.setText(move[1]);
+          dbName3.setText(move[2]);
+      }
+      else if(length==4){
+          dbName1.setText(move[0]);
+          dbName2.setText(move[1]);
+          dbName3.setText(move[2]);
+          dbName4.setText(move[3]);
+
+      }
+      else if(length==5){
+          dbName1.setText(move[0]);
+          dbName2.setText(move[1]);
+          dbName3.setText(move[2]);
+          dbName4.setText(move[3]);
+          dbName5.setText(move[4]);
+      }
+      else if(length==6){
+          dbName1.setText(move[0]);
+          dbName2.setText(move[1]);
+          dbName3.setText(move[2]);
+          dbName4.setText(move[3]);
+          dbName5.setText(move[4]);
+          dbName6.setText(move[4]);
+      }
+      else {
+        JOptionPane.showMessageDialog(addMovie,"Maximum");
+      }
 }
 public  void handleCheckbox(){
     String name;
-    boolean done;
     String newName;
 
         if(ch1.isSelected()){
@@ -350,6 +551,34 @@ public  void handleCheckbox(){
             JOptionPane.showMessageDialog(addMovie,"No Items Selected");
         }
 }
+public String deleteCheckbox(){
+    String newName = "";
+
+        if(ch1.isSelected()){
+            return dbName1.getText();
+        }
+        else if(ch2.isSelected()){
+            return dbName2.getText();
+        }
+        else if(ch3.isSelected()){
+            return dbName3.getText();
+        }
+        else if(ch4.isSelected()){
+            return dbName4.getText();
+        }
+        else if(ch5.isSelected()){
+            return dbName5.getText();
+        }
+        else if(ch6.isSelected()){
+            return dbName6.getText();
+        }
+        else {
+            JOptionPane.showMessageDialog(addMovie,"No Items Selected");
+        }
+
+
+    return newName;
+}
 public String[] selectedCheckbox(){
     String[] out = new String[3];
     String newName;
@@ -366,7 +595,6 @@ public String[] selectedCheckbox(){
     else if(ch3.isSelected()){
         newName= dbName3.getText();
         out=Edit(newName);
-
     }
     else if(ch4.isSelected()){
         newName= dbName4.getText();
@@ -433,21 +661,16 @@ public String[] Edit(String name){
         String [] move = new String[length];
         String [] price = new String[length];
         String [] time = new String[length];
-        time[0]=databasecontrol.time(name);
-
+            time[0]=databasecontrol.time(name);
             move[0]=databasecontrol.name();
             price[0]=databasecontrol.price(name);
 
         String [] r = new String[3];
-        r[0]=time[0];
-        r[1]=move[0];
-        r[2]=price[0];
-
+        r[0]=move[0];
+        r[1]=price[0];
+        r[2]=time[0];
         return r;
 
     }
-
-
-
 
 }
