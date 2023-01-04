@@ -519,6 +519,7 @@ updateUpdate.addActionListener(new ActionListener()
     }
 });
 }
+
 public void displayNames()
 {
       databasecontrol databasecontrol = new databasecontrol();
