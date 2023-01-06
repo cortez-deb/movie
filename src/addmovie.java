@@ -52,7 +52,7 @@ public class addmovie {
 
      JButton updateUpdate = new JButton("Update");
 
-    databasecontrol databasecontrol = new databasecontrol();
+    database_control database_control = new database_control();
 
 
     public void createMovie()
@@ -388,7 +388,7 @@ delete.addActionListener(new ActionListener()
             public void actionPerformed(ActionEvent e)
             {
                 boolean deleted;
-                deleted=databasecontrol.delete(deleteCheckbox());
+                deleted= database_control.delete(deleteCheckbox());
 
                 if (!deleted)
                 {
@@ -487,11 +487,11 @@ insert.addActionListener(new ActionListener()
 
             if(pr)
             {
-                int length=databasecontrol.nameCount();
+                int length= database_control.nameCount();
                 if(length<7)
                 {
 
-                        if (databasecontrol.insert(name, time, newPrice))
+                        if (database_control.insert(name, time, newPrice))
                         {
                             displayNames();
 
@@ -522,12 +522,12 @@ updateUpdate.addActionListener(new ActionListener()
 
 public void displayNames()
 {
-      databasecontrol databasecontrol = new databasecontrol();
-      int length = databasecontrol.nameCount();
+      database_control database_control = new database_control();
+      int length = database_control.nameCount();
       String [] move = new String[length];
       for (int i =0;i<length;i++)
       {
-          move[i]=databasecontrol.names().get(i);
+          move[i]= database_control.names().get(i);
       }
 
       if(length==1)
@@ -569,7 +569,7 @@ public void displayNames()
           dbName3.setText(move[2]);
           dbName4.setText(move[3]);
           dbName5.setText(move[4]);
-          dbName6.setText(move[4]);
+          dbName6.setText(move[5]);
       }
 /*      else {
         JOptionPane.showMessageDialog(addMovie,"Maximum");
@@ -712,7 +712,7 @@ public String[] selectedCheckbox()
 }
 public void updater(String newName,String name,String price,String time)
 {
-    databasecontrol databasecontrol = new databasecontrol();
+    database_control database_control = new database_control();
     if (name.isEmpty()||time.isEmpty()||price.isEmpty())
     {
         if (name.isEmpty())
@@ -752,7 +752,7 @@ public void updater(String newName,String name,String price,String time)
         if(pr)
         {
 
-            if (databasecontrol.update(newName,name, time, newPrice))
+            if (database_control.update(newName,name, time, newPrice))
             {
                 JOptionPane.showMessageDialog(addMovie, "Added");
             }
@@ -768,14 +768,14 @@ public String[] Edit(String name)
 {
 
 
-        databasecontrol databasecontrol = new databasecontrol();
+        database_control database_control = new database_control();
         int length = 1;
         String [] move = new String[length];
         String [] price = new String[length];
         String [] time = new String[length];
-            time[0]=databasecontrol.time(name);
-            move[0]=databasecontrol.name();
-            price[0]=databasecontrol.price(name);
+            time[0]= database_control.time(name);
+            move[0]= database_control.name();
+            price[0]= database_control.price(name);
 
         String [] r = new String[3];
         r[0]=move[0];

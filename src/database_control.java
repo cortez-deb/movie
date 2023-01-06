@@ -2,8 +2,8 @@ import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class databasecontrol {
-    public boolean adminlogin(String user, String pass)
+public class database_control {
+    public boolean admin_login(String user, String pass)
     {
             login login=new login();
         String result ="";
@@ -70,6 +70,56 @@ public class databasecontrol {
             JOptionPane.showMessageDialog(addmovie.addMovie,"Failed");
         }
         return sent;
+    }
+    public ArrayList<String> times()
+    {
+
+        ArrayList<String> time =new ArrayList<String>();
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/movie","deh","bedrock");
+            Statement stmt=con.createStatement();
+            ResultSet rs=stmt.executeQuery(" select time from movie;");
+            while(rs.next()){
+
+              name name =  new name(rs.getString("time"));
+                time.add(name.getname());
+            }
+
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException throwable) {
+            System.out.println(throwable);
+        }
+
+        return time;
+    }
+    public ArrayList<String> prices()
+    {
+
+        ArrayList<String> price =new ArrayList<String>();
+        try {
+
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con= DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/movie","deh","bedrock");
+            Statement stmt=con.createStatement();
+            ResultSet rs=stmt.executeQuery(" select price from movie;");
+            while(rs.next()){
+
+              name name =  new name(rs.getString("price"));
+                price.add(name.getname());
+            }
+
+            con.close();
+        }
+        catch (SQLException | ClassNotFoundException throwable) {
+            System.out.println(throwable);
+        }
+
+        return price;
     }
     public ArrayList<String> names()
     {
@@ -220,8 +270,7 @@ public class databasecontrol {
 
         return done;
     }
-
-
+    
     public boolean update(String name,String newName, String time,float price)
     {
         addmovie addmovie = new addmovie();

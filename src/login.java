@@ -68,9 +68,9 @@ public class login extends JFrame {
                                             if(passWord.matches("^[a-zA-Z0-9]*$"))
                                                     {
                                                    //database goes
-                                                        databasecontrol databasecontrol =
-                                                                new databasecontrol();
-                                                        session= databasecontrol.adminlogin(userName,passWord);
+                                                        database_control database_control =
+                                                                new database_control();
+                                                        session= database_control.admin_login(userName,passWord);
                                                     if(session){
                                                         loginFrame.setVisible(false);
                                                         addmovie addmovie = new addmovie();
