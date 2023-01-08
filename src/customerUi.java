@@ -189,7 +189,7 @@ next.addActionListener(new ActionListener() {
 });
         
     }
-    public  void  display(){
+    private  void  display(){
         database_control database_control = new database_control();
         int length = database_control.nameCount();
         int time_length = database_control.nameCount();
@@ -331,7 +331,7 @@ next.addActionListener(new ActionListener() {
                     dbPrice6.setText(price[4]);
                 }
         }
-    public float handleCheckbox(JCheckBox box1, JCheckBox box2,
+    private float handleCheckbox(JCheckBox box1, JCheckBox box2,
                                 JCheckBox box3, JCheckBox box4,
                                 JCheckBox box5, JCheckBox box6)
     {

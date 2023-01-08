@@ -198,7 +198,7 @@ public class addmovie {
         updateUpdate.setBounds(620,25,100,20);
         updatePanel.add(updateUpdate);
         updateUpdate.setVisible(false);
-
+displayNames();
         ch1.addActionListener(new ActionListener()
         {
             @Override
@@ -520,7 +520,7 @@ updateUpdate.addActionListener(new ActionListener()
 });
 }
 
-public void displayNames()
+private void displayNames()
 {
       database_control database_control = new database_control();
       int length = database_control.nameCount();
@@ -575,7 +575,7 @@ public void displayNames()
         JOptionPane.showMessageDialog(addMovie,"Maximum");
       }*/
 }
-public  void handleCheckbox(){
+private   void handleCheckbox(){
     String name;
     String newName;
 
@@ -633,7 +633,7 @@ public  void handleCheckbox(){
             JOptionPane.showMessageDialog(addMovie,"No Items Selected");
         }
 }
-public String deleteCheckbox()
+private String deleteCheckbox()
 {
     String newName = "";
 
@@ -669,7 +669,7 @@ public String deleteCheckbox()
 
     return newName;
 }
-public String[] selectedCheckbox()
+private String[] selectedCheckbox()
 {
     String[] out = new String[3];
     String newName;
@@ -710,7 +710,7 @@ public String[] selectedCheckbox()
     }
     return out;
 }
-public void updater(String newName,String name,String price,String time)
+private void updater(String newName,String name,String price,String time)
 {
     database_control database_control = new database_control();
     if (name.isEmpty()||time.isEmpty()||price.isEmpty())
@@ -764,7 +764,7 @@ public void updater(String newName,String name,String price,String time)
         }
     }
 }
-public String[] Edit(String name)
+private String[] Edit(String name)
 {
 
 
