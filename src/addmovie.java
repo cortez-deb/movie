@@ -491,9 +491,11 @@ insert.addActionListener(new ActionListener()
                 if(length<7)
                 {
 
-                        if (database_control.insert(name, time, newPrice))
+                        if (database_control.insert(name, time, String.valueOf(newPrice)))
                         {
                             displayNames();
+                            customerUi customerUi = new customerUi();
+                            customerUi.redirectDisplay();
 
                         }
                         else
@@ -571,9 +573,14 @@ private void displayNames()
           dbName5.setText(move[4]);
           dbName6.setText(move[5]);
       }
-/*      else {
-        JOptionPane.showMessageDialog(addMovie,"Maximum");
-      }*/
+      else {
+          dbName1.setText("NAN");
+          dbName2.setText("NAN");
+          dbName3.setText("NAN");
+          dbName4.setText("NAN");
+          dbName5.setText("NAN");
+          dbName6.setText("NAN");
+      }
 }
 private   void handleCheckbox(){
     String name;

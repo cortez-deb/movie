@@ -207,7 +207,7 @@ next.addActionListener(new ActionListener() {
         if(length==1)
         {
             dbName1.setText(move[0]);
-            dbTime1.setText(time[1]);
+            dbTime1.setText(time[0]);
         }
         else if(length==2)
         {
@@ -238,7 +238,7 @@ next.addActionListener(new ActionListener() {
             dbName4.setText(move[3]);
             dbName5.setText(move[4]);
         }
-        else {
+        else if(length==6) {
             dbName1.setText(move[0]);
             dbName2.setText(move[1]);
             dbName3.setText(move[2]);
@@ -246,12 +246,20 @@ next.addActionListener(new ActionListener() {
             dbName5.setText(move[4]);
             dbName6.setText(move[5]);
         }
+        else {
+            dbName1.setText("NAN");
+            dbName2.setText("NAN");
+            dbName3.setText("NAN");
+            dbName4.setText("NAN");
+            dbName5.setText("NAN");
+            dbName6.setText("NAN");
+        }
 
         //tried to put both in same if else block,failed to work
 
         if(time_length==1)
         {
-            dbTime1.setText(time[1]);
+            dbTime1.setText(time[0]);
         }
         else if(time_length==2)
         {
@@ -281,7 +289,7 @@ next.addActionListener(new ActionListener() {
                 dbTime4.setText(time[3]);
                 dbTime5.setText(time[4]);
             }
-            else {
+            else if(time_length==6) {
                 dbTime1.setText(time[0]);
                 dbTime2.setText(time[1]);
                 dbTime3.setText(time[2]);
@@ -289,10 +297,18 @@ next.addActionListener(new ActionListener() {
                 dbTime5.setText(time[4]);
                 dbTime6.setText(time[4]);
             }
+            else {
+            dbTime1.setText("NAN");
+            dbTime2.setText("NAN");
+            dbTime3.setText("NAN");
+            dbTime4.setText("NAN");
+            dbTime5.setText("NAN");
+            dbTime6.setText("NAN");
+        }
 //doing for price
         if(price_length==1)
         {
-            dbPrice1.setText(price[1]);
+            dbPrice1.setText(price[0]);
         }
                  else if(price_length ==2)
                 {
@@ -322,7 +338,7 @@ next.addActionListener(new ActionListener() {
                     dbPrice4.setText(price[3]);
                     dbPrice5.setText(price[4]);
                 }
-                else {
+                else if(price_length == 6){
                     dbPrice1.setText(price[0]);
                     dbPrice2.setText(price[1]);
                     dbPrice3.setText(price[2]);
@@ -330,6 +346,17 @@ next.addActionListener(new ActionListener() {
                     dbPrice5.setText(price[4]);
                     dbPrice6.setText(price[4]);
                 }
+        else {
+            dbPrice1.setText("NAN");
+            dbPrice2.setText("NAN");
+            dbPrice3.setText("NAN");
+            dbPrice4.setText("NAN");
+            dbPrice5.setText("NAN");
+            dbPrice6.setText("NAN");
+        }
+        }
+        public void redirectDisplay(){
+        display();
         }
     private float handleCheckbox(JCheckBox box1, JCheckBox box2,
                                 JCheckBox box3, JCheckBox box4,
